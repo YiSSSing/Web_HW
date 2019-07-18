@@ -31,7 +31,8 @@ Test (if you use xampp) :
 
    2.copy all files and directory into this folder
 
-   3.construct a database "php_partice" which contains three table, each must contain terms which mention before, NOTE that this program      
+   3.construct a database "php_partice" which contains three table, each must contain terms which mention before, NOTE that this program 
+   
      has set phpMyAdmin account as (root,Yisinglabuse), if your account and password is differ from this, any your operations will not be
 
      store to database, and some error message may throws out 
