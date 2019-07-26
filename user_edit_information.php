@@ -66,6 +66,7 @@ if ( isset($_COOKIE['user_upload'])) {
   }
 }
 
+//here check is user himself if needed
 if ( isset($_SESSION['keep_name']) ) {
   $account = $_SESSION['keep_name'] ;
   $password = $_SESSION['keep_password'] ;
@@ -85,6 +86,7 @@ if ( isset($new_password) ) {
 
 $user_picture = "Nobody.jpg" ;
 
+
 $conn = mySQL_connection::get_connected($HOST_name,$local_user,$local_password,$local_db) ;
 $fields = "*" ;
 $db = "user_account" ;
@@ -94,8 +96,6 @@ $conn = mySQL_connection::stop_connected();
 
 
 if ( !isset($result) || empty($result) ) {
-  echo "second" ;
-  die() ;
   header("Location: sign_in.php") ;
   die() ;
 }
@@ -237,6 +237,11 @@ if ( $result[0]['picture'] != "none" ) $user_picture = $result[0]['picture'] ;
     function myFriendOnClick() {
       window.location.replace('myFriend.php') ;
     }
+
+    function ALLMemberOnClick() {
+      window.location.href = 'list_user_account.php' ;
+    }
+
   </script>
   
 
@@ -259,6 +264,7 @@ if ( $result[0]['picture'] != "none" ) $user_picture = $result[0]['picture'] ;
       <div style="color:black; font-size:26px;" id="myFile" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFileOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的檔案</dt></dl></div>
       <div style="color:black; font-size:26px;" id="myPicture" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myPictureOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的照片</dt></dl></div>
       <div style="color:black; font-size:26px;" id="myFriend" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFriendOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>好友列表</dt></dl></div>
+      <div style="color:black; font-size:26px;" id="allMember" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="ALLMemberOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>成員列表</dt></dl></div>
     </div>
     <div class = "col-sm-9" style="height:max-content" id="information_board" name="information_board">
       <div class = "row" ></div>

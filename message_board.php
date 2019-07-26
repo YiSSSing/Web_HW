@@ -19,6 +19,7 @@ if ( isset($_SESSION['keep_name']) ) {
   $password = $_COOKIE['ck_password'] ;
 }else {
   header("Location: sign_in.php") ;
+  echo "Login Information error" ;
   die() ;
 }
 setcookie('ck_account',$email) ;
@@ -152,6 +153,11 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
     function myFileOnClick() {
       window.location.replace('myFile.php') ;
     }
+
+    function ALLMemberOnClick() {
+      window.location.href = 'list_user_account.php' ;
+    }
+
   </script>
 
   <script type="text/javascript">
@@ -366,7 +372,7 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
       var owner = document.getElementById('eaccount').innerHTML ;
       var htp = new XMLHttpRequest() ;
       var n = null ;
-      var belong = document.getElementById('board_belong').innerHTML ;
+      var belong = document.getElementById('border_eaccount').innerHTML ;
       htp.onreadystatechange = function() {
         if (htp.readyState == 4 && htp.status == 200 ) {
           n = htp.responseText ;
@@ -509,6 +515,7 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
       <div style="color:black; font-size:26px;" id="myFile" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFileOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的檔案</dt></dl></div>
       <div style="color:black; font-size:26px;" id="myPicture" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myPictureOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的照片</dt></dl></div>
       <div style="color:black; font-size:26px;" id="myFriend" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFriendOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>好友列表</dt></dl></div>
+      <div style="color:black; font-size:26px;" id="allMember" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="ALLMemberOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>成員列表</dt></dl></div>
     </div>
     <div class = "col-sm-6" style="height:max-content" id="message_board" name="message_board">
       <div class="col-sm-12" style="height:max-content; background-color:snow; border-radius:18px;" id="newpost">
@@ -527,7 +534,7 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
         if ( isset($_GET['eac']) ) $user_eac = $_GET['eac'] ;
         else $user_eac = getEmailAccount($_COOKIE['ck_account']) ;
 
-        echo '<div class="col-sm-12" style="display:none;" id="border_eaccount">$user_eac</div>' ;
+        echo '<div class="col-sm-12" style="display:none;" id="border_eaccount">' . $user_eac . '</div>' ;
         if ( $user_eac != $my_eac ) {
            $Name = $conn->get_select('user_account','nickname',"eaccount='$user_eac'") ;
            $user_nname = $Name[0]['nickname'] ;
@@ -591,6 +598,7 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
         $conn = mySQL_connection::stop_connected() ;
         
       ?>
+      <!---
       <div class="col-sm-12" style="display:none;" id="board_belong"><?php echo(getEmailAccount($user_eac));?></div>
       <div class="col-sm-12" style="height:max-content; background-color:snow; border-radius:18px; margin-top:20px;" id="325post">
         <div class="col-sm-2" style="margin-top:10px;"><img src=<?php echo($user_picture);?> class="img-circle img-responsive" width="70" height="70" style="margin:0px auto;"></div>
@@ -628,8 +636,10 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
         </div>
       </div>
     </div>
+    --->
     <div class = "col-sm-3" style="height:max-content" id="friend_board" name="friend_board">
     <?php
+    /*
     $conn = mySQL_connection::get_connected($HOST_name,$local_user,$local_password,$local_db) ;
     foreach($my_friends as $friend) {
       $fri = $conn->get_select('user_account','id,nickname,picture,last_login',"eaccount='$friend'") ;
@@ -642,6 +652,7 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
       echo '</div>' ;
     }
     $conn = mySQL_connection::stop_connected() ;
+    */
     ?>
     </div>
 

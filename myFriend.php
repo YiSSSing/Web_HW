@@ -24,7 +24,8 @@ $result = $conn->get_select($db,$fields,$where) ;
 $conn = mySQL_connection::stop_connected();
 
 $user_nickname = $result[0]['nickname'] ;
-$user_picture = $result[0]['picture'] ;
+if ( $result[0]['picture'] == "none" ) {$user_picture = "Nobody.jpg" ; }
+else { $user_picture = $result[0]['picture'] ; }
 $my_friend = $result[0]['friends'] ;
 $my_eac = getEmailAccount($email) ;
 
@@ -117,6 +118,10 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
           var id = parseInt(x).toString() ;
           var eac = document.getElementById(id+'friend_eac').innerHTML ;
           window.location.href = "message_board.php?eac="+eac ;
+        }
+
+        function ALLMemberOnClick() {
+          window.location.href = 'list_user_account.php' ;
         }
 
         function resOnMouse(x) {
@@ -418,6 +423,7 @@ for ( $i = 0 ; $i < strlen($my_friend) ; $i++ ) {
             <div style="color:black; font-size:26px;" id="myFile" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myMessageOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>留言板</dt></dl></div>
             <div style="color:black; font-size:26px;" id="myPicture" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myPictureOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的照片</dt></dl></div>
             <div style="color:black; font-size:26px;" id="myFriend" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFileOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的檔案</dt></dl></div>
+            <div style="color:black; font-size:26px;" id="allMember" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="ALLMemberOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>成員列表</dt></dl></div>
         </div>
         <div class="col-sm-6">
         <div class="col-sm-12" style="font-size:24px; font-weight:bold; margin-top:20px; background:snow; padding:6px; border-radius:18px; padding-left:20px;">好友的貼文</div>

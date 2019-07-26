@@ -134,6 +134,7 @@ function getEmailAccount($string) {
 }
 
 //Suppose time1 happened after time2
+//some bug still exist, do not use
 function getTimeInterval($time1,$time2) {
   $result = '' ;
   $tem = 0 ;

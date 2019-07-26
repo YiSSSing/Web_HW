@@ -25,8 +25,8 @@ if ( isset($_COOKIE["first_name"])) {
 $eac = getEmailAccount($email) ;
 //create user information
 $db = "user_account" ;
-$fields = "(email,eaccount,password,first_name,last_name,gender,comment,nickname,picture)" ;
-$values = "('$email','$eac','$password','$fname','$lname','$gender','$comment','$nickname','$pic')" ;
+$fields = "(email,eaccount,password,first_name,last_name,gender,comment,nickname,picture,friends)" ;
+$values = "('$email','$eac','$password','$fname','$lname','$gender','$comment','$nickname','$pic','none')" ;
 $conn = mySQL_connection::get_connected($HOST_name,$local_user,$local_password,$local_db) ;
 $result = $conn->insert_to($db,$fields,$values) ;
 $conn = mySQL_connection::stop_connected();

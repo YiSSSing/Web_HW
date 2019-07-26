@@ -9,23 +9,17 @@ $HOST_name = gethostbyname(gethostname()) ;
 $local_user = "root" ;
 $local_password = "Yisinglabuse" ;
 $local_db = "php_partice" ;
-/*
-$a = array() ;
-for ( $i = 0 ; $i < 100 ; $i++ ) {
-    $a[$i] = $i * $i ;
-} 
-echo "<pre>" . print_r($a,true) . "</pre>" ;
-*/ 
-/*
-$conn = mySQL_connection::get_connected($HOST_name,$local_user,$local_password,$local_db) ;
-$result = $conn->get_select('user_account','last_login',"eaccount='Kaguya'") ;
-$conn = mySQL_connection::stop_connected() ;
-*/
 
-$string = "what&a&sexy&pussy" ;
-echo substr($string,0,-5) . "<br>" ;
-echo substr($string,0,strpos($string,"sexy"))."<br>" ;
-echo substr($string,strpos($string,"sexy")+4) ;
+$zero = 0 ;
+$db = "user_posts" ;
+$fields = "(owner,board,post_time,content,reply,replies,good,say_good)" ;
+$values = "('me','me','$time','abc','$zero','','$zero','pre,')" ;
+$conn = mySQL_connection::get_connected($HOST_name,$local_user,$local_password,$local_db) ;
+$result = $conn->insert_to($db,$fields,$values) ;
+$result = $conn->get_select($db,'id',"content='$content'") ;
+$conn = mySQL_connection::stop_connected();
+echo $result[0]['id'] . "<br>" ;
+
 
 
 ?>

@@ -35,7 +35,7 @@ switch($doID) {
         }
         $db = "user_posts" ;
         $fields = "(owner,board,post_time,content,reply,replies,good,say_good)" ;
-        $values = "('$owner','$belong','$time','$content','$zero','$nullstring','$zero','pre,')" ;
+        $values = "('$owner','$belong','$time','$content','$zero','','$zero','pre,')" ;
         $conn = mySQL_connection::get_connected($HOST_name,$local_user,$local_password,$local_db) ;
         $result = $conn->insert_to($db,$fields,$values) ;
         $result = $conn->get_select($db,'id',"content='$content'") ;

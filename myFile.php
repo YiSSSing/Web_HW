@@ -27,7 +27,8 @@ if ( !isset($result) || empty($result) ) {
 }
 
 $user_nickname = $result[0]['nickname'] ;
-$user_picture = $result[0]['picture'] ;
+if ( $result[0]['picture'] == "none" ) {$user_picture = "Nobody.jpg" ; }
+else { $user_picture = $result[0]['picture'] ; }
 
 $conn = mySQL_connection::get_connected($HOST_name,$local_user,$local_password,$local_db) ;
 $t = $time . "now" ;
@@ -69,7 +70,7 @@ $conn = mySQL_connection::stop_connected();
 
         function logoutOnClick() {
             document.cookie = "loging_out = true" ;
-            window.location.href('sign_in.php') ;
+            window.location.href = 'sign_in.php' ;
         }
 
         function myButtonOnMouse(x) {
@@ -102,6 +103,10 @@ $conn = mySQL_connection::stop_connected();
 
         function myMessageOnClick() {
           window.location.replace("message_board.php") ;
+        }
+
+        function ALLMemberOnClick() {
+          window.location.href = 'list_user_account.php' ;
         }
 
         function confirmOnClick() {
@@ -169,6 +174,7 @@ $conn = mySQL_connection::stop_connected();
             <div style="color:black; font-size:26px;" id="myFile" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myMessageOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>留言板</dt></dl></div>
             <div style="color:black; font-size:26px;" id="myPicture" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myPictureOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的照片</dt></dl></div>
             <div style="color:black; font-size:26px;" id="myFriend" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFriendOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>好友列表</dt></dl></div>
+            <div style="color:black; font-size:26px;" id="allMember" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="ALLMemberOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>成員列表</dt></dl></div>
         </div>
         <div class="col-sm-9">
             <h1><dl><dt>檔案列表</dt></dl></h1>

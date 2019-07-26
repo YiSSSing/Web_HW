@@ -11,8 +11,6 @@ MySQL required :
                       user_account  (id , email , eaccount , password , first_name , last_name , gender , comment , nickname , picture )
     php_partice --->  user_files    (id , owner , name , size , download_link , upload_time )
                       user_posts    (id , owner , board , post_time , content , reply , replies , good , say_good )
-                      
-                      where (id,size,reply,good) are int , others are text
 
    2.the phpMyAdmin account is bounded
 
@@ -33,8 +31,7 @@ Test (if you use xampp) :
 
    2.copy all files and directory into this folder
 
-   3.construct a database "php_partice" which contains three table, each must contain terms which mention before, NOTE that this program 
-   
+   3.construct a database "php_partice" which contains three table, each must contain terms which mention before, NOTE that this program      
      has set phpMyAdmin account as (root,Yisinglabuse), if your account and password is differ from this, any your operations will not be
 
      store to database, and some error message may throws out 

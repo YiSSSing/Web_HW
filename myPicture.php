@@ -27,7 +27,8 @@ $conn = mySQL_connection::stop_connected();
 
 $user_nickname = $result[0]['nickname'] ;
 $folder = getEmailAccount($email) ;
-$user_picture = $result[0]['picture'] ;
+if ( $result[0]['picture'] == "none" ) {$user_picture = "Nobody.jpg" ; }
+else { $user_picture = $result[0]['picture'] ; }
 setcookie('nickname') ;
 setcookie('picture') ;
 
@@ -110,6 +111,10 @@ $pics = glob('user_pictures/' . $folder . '/*.*') ;
         function myFriendOnClick() {
           window.location.replace('myFriend.php') ;
         }
+
+        function ALLMemberOnClick() {
+          window.location.href = 'list_user_account.php' ;
+        }
     </script>
 
     <script type="text/javascript">
@@ -179,6 +184,7 @@ $pics = glob('user_pictures/' . $folder . '/*.*') ;
             <div style="color:black; font-size:26px;" id="myFile" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myMessageOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>留言板</dt></dl></div>
             <div style="color:black; font-size:26px;" id="myPicture" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFileOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>我的檔案</dt></dl></div>
             <div style="color:black; font-size:26px;" id="myFriend" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="myFriendOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>好友列表</dt></dl></div>
+            <div style="color:black; font-size:26px;" id="allMember" onmouseover="myButtonOnMouse(this.id)" onmouseout="myButtonOutMouse(this.id)" onclick="ALLMemberOnClick()" onmousedown="myButtonDownMouse(this.id)" onmouseup="myButtonUpMouse(this.id)"><dl><dt>成員列表</dt></dl></div>
         </div>
         <div class="col-sm-9">
         <?php 
