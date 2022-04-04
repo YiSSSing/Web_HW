@@ -1,4 +1,4 @@
-Message board example, 2019
+Message board example
 
 this website is test by xampp, phpMyAdmin , MariaDB
 
